@@ -1,0 +1,28 @@
+{
+  "name": "battleships",
+  "version": "1.0.0",
+  "description": "You sunk my battleship.",
+  "main": "game.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sykul/battleships.git"
+  },
+  "keywords": [
+    "game"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sykul/battleships/issues"
+  },
+  "homepage": "https://github.com/sykul/battleships#readme",
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-jest": "^29.7.0"
+  }
+}
