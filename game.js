@@ -2,7 +2,6 @@ class Ship {
     constructor(length) {
         this.length = length;
         this.hits = 0;
-        this.sunk = false;
     }
 
     hit() {
@@ -11,11 +10,13 @@ class Ship {
         }
     }
 
+
+
     get isSunk() {
-        if (this.sunk === false) {
-            return `Not yet`
-        } else if (this.sunk === true) {
-            return 'Sunk!'
+        if (this.hits < this.length) {
+            return false;
+        } else if (this.hits >= this.length) {
+            return true;
         }
     }
 }
