@@ -12,7 +12,6 @@ class Ship {
     }
 
 
-
     get isSunk() {
         if (this.hits < this.length) {
             return false;
@@ -35,7 +34,46 @@ class Gameboard {
                 this.board.push([letter, number]);
             }
         }
+        
     }
+    placeShip(shipObj, x, y, direction) {
+        /* Select random coordinate
+        If coordinate taken, start again
+        If coordinate free, pick random direction (store in variable)
+        Check (length of ship)-1 places in that direction
+        If any coordinate taken, start again
+        If no coordinates taken, set ship.position to coordinates
+        Return true
+         */
+    }
+
+    get allSunk() {
+        if (this.carrier.isSunk === true
+            && this.battleship.isSunk === true
+            && this.cruiser.isSunk === true
+            && this.destroyer.isSunk === true
+            && this.submarine.isSunk === true
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}
+
+class Player {
+    constructor() {
+        
+    }
+}
+
+class HumanPlayer extends Player {
+
+}
+
+class ComputerPlayer extends Player {
+
 }
 
 const gb = new Gameboard()
