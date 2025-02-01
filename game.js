@@ -36,15 +36,28 @@ class Gameboard {
         }
         
     }
-    placeShip(shipObj, x, y, direction) {
+    findRandomFreePosition(shipLength) {
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        const possibleLetters = ['A','B','C','D','E','F','G','H','I','J']
+        const xPosition = possibleLetters[getRandomInt(1,10)]
+        const yPosition = getRandomInt(1,10)
         /* Select random coordinate
         If coordinate taken, start again
         If coordinate free, pick random direction (store in variable)
         Check (length of ship)-1 places in that direction
         If any coordinate taken, start again
         If no coordinates taken, set ship.position to coordinates
-        Return true
+        Return length of ship, coordinates, and direction
          */
+        return {xPosition: xPosition, yPosition: yPosition}
+    }
+
+    placeShip(shipObj, x, y, direction) {
+
     }
 
     get allSunk() {

@@ -115,8 +115,9 @@ test("gameboard reports false if all ships have sunk", () => {
 
 })
 
-test.skip("", () => {
-    
+test("gameboard can select a random x and y coordinate within range", () => {
+    const testboard = new Gameboard();
+    expect(testboard.findRandomFreePosition(1).yPosition).toBeLessThanOrEqual(10)
 })
 
 test.skip("", () => {
