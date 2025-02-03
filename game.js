@@ -31,7 +31,7 @@ class Gameboard {
         this.board = [];
         for (let letter of ['A','B','C','D','E','F','G','H','I','J']) {
             for (let number of ['1','2','3','4','5','6','7','8','9','10']) {
-                this.board.push([letter, number]);
+                this.board.push([letter, number, null]);
             }
         }
         
@@ -45,8 +45,10 @@ class Gameboard {
         const possibleLetters = ['A','B','C','D','E','F','G','H','I','J']
         const xPosition = possibleLetters[getRandomInt(1,10)]
         const yPosition = getRandomInt(1,10)
+
+        
         /* Select random coordinate
-        If coordinate taken, start again
+        If coordinate taken, return false
         If coordinate free, pick random direction (store in variable)
         Check (length of ship)-1 places in that direction
         If any coordinate taken, start again
