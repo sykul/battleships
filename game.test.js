@@ -1,4 +1,4 @@
-import {Ship, Gameboard} from "./game.js"
+import {Ship, Gameboard} from "./src/game.js"
 
 test("test suite set up correctly", () => {
     expect(Ship).toBeTruthy();
