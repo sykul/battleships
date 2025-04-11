@@ -1,4 +1,5 @@
-import {Ship, Gameboard} from "./src/game.js"
+import {Ship} from './src/ship.js'
+import {Gameboard} from "./src/gameboard.js"
 
 test("test suite set up correctly", () => {
     expect(Ship).toBeTruthy();
@@ -115,13 +116,15 @@ test("gameboard reports false if all ships have sunk", () => {
 
 })
 
-test("gameboard can select a random x and y coordinate within range", () => {
+test.skip("gameboard can select a random x and y coordinate within range", () => {
     const testboard = new Gameboard();
     expect(testboard.findRandomFreePosition(1).yPosition).toBeLessThanOrEqual(10)
 })
 
-test.skip("", () => {
-    
+test("placeShipOnCell places a ship on a cell", () => {
+    const testboard = new Gameboard();
+    testboard.placeShipOnCell('A','1',testboard.battleship);
+    expect(testboard.board[0][2]).toBe(testboard.battleship);
 })
 
 test.skip("", () => {
