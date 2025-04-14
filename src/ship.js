@@ -1,11 +1,14 @@
+import { Position } from "./position";
+
 class Ship {
-    constructor(length) {
+    constructor(length, direction, x, y) {
         this.length = length;
         this.hits = 0;
-        this.position = [];
+        this.position = new Position(x,y);
+        this.direction = direction;
     }
 
-    hit() {
+    increaseHits() {
         if (this.hits < this.length) {
             this.hits = this.hits + 1;
         }

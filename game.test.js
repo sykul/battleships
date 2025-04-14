@@ -1,5 +1,6 @@
 import { Ship } from './src/ship.js'
 import { Gameboard } from "./src/gameboard.js"
+import { Position } from './src/position.js';
 
 
 describe('Ship class tests', () => {
@@ -9,20 +10,20 @@ describe('Ship class tests', () => {
     })
 
     test("hits don't exceed length", () => {
-        testship.hit();
-        testship.hit();
-        testship.hit();
+        testship.increaseHits();
+        testship.increaseHits();
+        testship.increaseHits();
         expect(testship.hits).toEqual(2);
     })
 
     test("isSunk returns false if ship has not been sunk", () => {
-        testship.hit();
+        testship.increaseHits();
         expect(testship.isSunk).toBe(false);
     })
 
     test("isSunk returns true if ship has been sunk", () => {
-        testship.hit();
-        testship.hit()
+        testship.increaseHits();
+        testship.increaseHits()
         expect(testship.isSunk).toBe(true);
     })
 });
@@ -59,6 +60,10 @@ describe('Gameboard tests', () => {
         expect(arrayIntersect(gameboard.battleship.position, gameboard.carrier.position)).toBeFalsy();
     })
 
+    test.skip.each([
+        {ship: new Position(0,0), expected: true}
+    ])
+
     test.skip("the battleship's positions are inside the board", () => {
         const testboard = new Gameboard();
         testboard.battleship.place()
@@ -66,6 +71,8 @@ describe('Gameboard tests', () => {
         testboard.cruiser.place()
         testboard.destroyer.place()
         testboard.submarine.place()
+
+        test.
 
         expect();
     })
@@ -85,17 +92,17 @@ describe('Gameboard tests', () => {
     test("gameboard reports true if all ships have sunk", () => {
         const testboard = new Gameboard();
         for (let i = 0; i < 5; i++) {
-            testboard.carrier.hit()
+            testboard.carrier.increaseHits()
         }
         for (let i = 0; i < 4; i++) {
-            testboard.battleship.hit()
+            testboard.battleship.increaseHits()
         }
         for (let i = 0; i < 3; i++) {
-            testboard.cruiser.hit()
-            testboard.submarine.hit()
+            testboard.cruiser.increaseHits()
+            testboard.submarine.increaseHits()
         }
         for (let i = 0; i < 2; i++) {
-            testboard.destroyer.hit()
+            testboard.destroyer.increaseHits()
         }
         expect(testboard.allSunk).toBe(true);
 
@@ -104,17 +111,17 @@ describe('Gameboard tests', () => {
     test("gameboard reports false if all ships have sunk", () => {
         const testboard = new Gameboard();
         for (let i = 0; i < 5; i++) {
-            testboard.carrier.hit()
+            testboard.carrier.increaseHits()
         }
         for (let i = 0; i < 4; i++) {
-            testboard.battleship.hit()
+            testboard.battleship.increaseHits()
         }
         for (let i = 0; i < 3; i++) {
-            testboard.cruiser.hit()
-            testboard.submarine.hit()
+            testboard.cruiser.increaseHits()
+            testboard.submarine.increaseHits()
         }
         for (let i = 0; i < 1; i++) {
-            testboard.destroyer.hit()
+            testboard.destroyer.increaseHits()
         }
 
         expect(testboard.allSunk).toBe(false);
