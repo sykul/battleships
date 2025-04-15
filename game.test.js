@@ -2,12 +2,47 @@ import { Ship } from './src/ship.js'
 import { Gameboard } from "./src/gameboard.js"
 import { Position } from './src/position.js';
 
+describe('Ship initialisation tests', () => {
+
+    test("ship has length when initialised with length, position and direction", () => {
+        let testship = new Ship(2, 'A', '1', 'down');  
+        expect(testship.length).toEqual(2);
+    }) 
+
+    test("ship has position when initialised with length, position and direction", () => {
+        let testship = new Ship(2, 'A', '1', 'down');  
+        expect(testship.position.position).toEqual(['A','1']);
+    }) 
+
+    test("ship has direction when initialised with length, position and direction", () => {
+        let testship = new Ship(2, 'A', '1', 'down');  
+        expect(testship.direction).toEqual('down');
+    }) 
+
+    test("ship has position when initialised with length, position", () => {
+        let testship = new Ship(2, 'A', '1');  
+        expect(testship.position.position).toEqual(['A','1']);
+    })
+
+    test("ship has direction when initialised with length, position", () => {
+        let testship = new Ship(2, 'A', '1');  
+        expect(testship.direction).toEqual(null);
+    })
+
+    test("ship has length when initialised with length", () => {
+        let testship = new Ship(2);  
+        expect(testship.length).toEqual(2);
+    })
+
+})
+
 
 describe('Ship class tests', () => {
     let testship;
     beforeEach(() => {
         testship = new Ship(2);
     })
+
 
     test("hits don't exceed length", () => {
         testship.increaseHits();
@@ -61,8 +96,18 @@ describe('Gameboard tests', () => {
     })
 
     test.skip.each([
-        {ship: new Position(0,0), expected: true}
-    ])
+        {ship: new Position(0,0), expected: true},
+        {ship: new Position(1,0), expected: true},
+        {ship: new Position(0,10), expected: true},
+        {ship: new Position(10,0), expected: true},
+        {ship: new Position(11,0), expected: false},
+        {ship: new Position(0,11), expected: false},
+        {ship: new Position(-1,0), expected: false},
+        {ship: new Position(0,-1), expected: false},
+    ]) ('Test board game bounds: %s', (position, expected) => {
+        const board = new Gameboard();
+        expect(board.isInBounds(position)).toBe(expected);
+    });
 
     test.skip("the battleship's positions are inside the board", () => {
         const testboard = new Gameboard();
@@ -139,4 +184,4 @@ describe('Gameboard tests', () => {
         expect(testboard.board[0][2]).toBe(testboard.battleship);
     })
 
-})
+});

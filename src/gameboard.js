@@ -10,7 +10,7 @@ class Gameboard {
         this.board = [];
         for (let letter of ['A','B','C','D','E','F','G','H','I','J']) {
             for (let number of ['1','2','3','4','5','6','7','8','9','10']) {
-                this.board.push([letter, number, null]);
+                this.board.push([letter, number, null, false]);
             }
         }
         
@@ -47,6 +47,10 @@ class Gameboard {
     }
 
     placeShip(shipObj, x, y, direction) {
+
+    }
+
+    isInBounds(position) {
 
     }
 
