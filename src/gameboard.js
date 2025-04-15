@@ -10,10 +10,9 @@ class Gameboard {
         this.board = [];
         for (let letter of ['A','B','C','D','E','F','G','H','I','J']) {
             for (let number of ['1','2','3','4','5','6','7','8','9','10']) {
-                this.board.push([letter, number, null, false]);
+                this.board.push({x: letter, y: number, ship: null, hit: false});
             }
         }
-        
     }
 
     findRandomPosition(shipLength) {
@@ -38,20 +37,20 @@ class Gameboard {
         return {xPosition: xPosition, yPosition: yPosition}
     }
 
-    placeShipOnCell(x, y, shipObj) {
+    placeShipOnCell(shipObj, position) {
         let cell = this.board.find((e) => {
-            e[0] == x && e[1] == y;
-            return e;
+            return e.x == position.x && e.y == position.y;
         });
-        cell[2] = shipObj;
+        cell.ship = shipObj;
     }
 
-    placeShip(shipObj, x, y, direction) {
-
+    placeFullShip(shipObj, position, direction) {
+            return ;
     }
 
     isInBounds(position) {
-
+        position;
+        return true;
     }
 
     get allSunk() {
