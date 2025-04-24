@@ -112,9 +112,17 @@ describe('Ship placement tests', () => {
         { position: new Position('A', '11'), expected: false },
         { position: new Position('a', '1'), expected: false },
         { position: new Position('A', '-1'), expected: false },
-    ]) ('ships cannot be placed out of bounds: %#: %o', ({position, expected}) => {
+    ]) ('isInBounds detects when a position is out of bounds: %o', ({position, expected}) => {
         expect(testboard.isInBounds(position)).toBe(expected);
     });
+
+    test("check spaces returns true if spaces are free", () => {
+        expect(testboard.checkSpaces(2, new Position('A', '1'), "right")).toBe(true);
+    })
+
+    test("check spaces returns false if spaces are not free", () => {
+        expect(testboard.checkSpaces(3, new Position('I', '1'), "right")).toBe(false);
+    })
 
 })
 
@@ -176,11 +184,3 @@ test.skip("gameboard can select a random x and y coordinate within range", () =>
     const testboard = new Gameboard();
     expect(testboard.findRandomFreePosition(1).yPosition).toBeLessThanOrEqual(10)
 })
-
-test("placeShipOnCell places a ship on a cell", () => {
-    const testboard = new Gameboard();
-    testboard.placeShipOnCell('A', '1', testboard.battleship);
-    expect(testboard.board[0][2]).toBe(testboard.battleship);
-})
-
-

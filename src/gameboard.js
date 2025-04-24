@@ -2,11 +2,6 @@ import { Ship } from './ship.js'
 
 class Gameboard {
     constructor() {
-        this.carrier = new Ship(5);
-        this.battleship = new Ship(4);
-        this.cruiser = new Ship(3);
-        this.submarine = new Ship(3);
-        this.destroyer = new Ship(2);
         this.board = [];
         for (let letter of ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']) {
             for (let number of ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']) {
@@ -39,12 +34,30 @@ class Gameboard {
 
     placeShipOnCell(shipObj, position) {
         let cell = this.board.find((e) => {
-            return e.x == position.x && e.y == position.y;
+            return (e.x == position.x && e.y == position.y);
         });
         cell.ship = shipObj;
     }
 
+    checkSpaces(length, position, direction) {
+        if (direction === "right") {
+            for (i=0; i<length; i++) {
+                const possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+                possibleLetters.find((e) => {position.x === e})
+            }
+        } else if (direction === "up") {
+
+        } else if (direction === "left") {
+
+        } else if (direction === "down") {
+
+        } else {
+            throw "invalid error";
+        }
+    }
+
     placeFullShip(shipObj, position, direction) {
+        if (checkSpaces(shipObj.length, position, direction) === true)
         return;
     }
 
