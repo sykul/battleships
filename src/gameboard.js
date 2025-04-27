@@ -41,13 +41,23 @@ class Gameboard {
 
     checkSpaces(length, position, direction) {
         if (direction === "right") {
-            for (i=0; i<length; i++) {
-                const possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-                possibleLetters.find((e) => {position.x === e})
+            let possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+            let letterPosition = possibleLetters.indexOf(position.x)
+            let slicedArray = possibleLetters.slice(letterPosition, letterPosition + length)
+            if (slicedArray.length === length) {
+                return true;
+            } else {
+                return false;
             }
         } else if (direction === "up") {
 
         } else if (direction === "left") {
+            const possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+            for (let i=0; i<length; i++) {
+                let letterPosition = possibleLetters.indexOf(position.x)
+                let slicedArray = possibleLetters.toSpliced(letterPosition, length)
+                return slicedArray;
+            }
 
         } else if (direction === "down") {
 
