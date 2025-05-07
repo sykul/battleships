@@ -56,12 +56,12 @@ class Gameboard {
 
         } else if (direction === "left") {
             const possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-            for (let i=0; i<length; i++) {
-                let letterPosition = possibleLetters.indexOf(position.x);
-                let slicedArray = possibleLetters.toSpliced(letterPosition, length);
-                return slicedArray;
+            let letterPosition = possibleLetters.indexOf(position.x);
+            if (letterPosition - length < 0) {
+                return false;
+            } else if (letterPosition - length >= 0) {
+                return true;
             }
-
         } else if (direction === "down") {
 
         } else {
