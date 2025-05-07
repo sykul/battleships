@@ -1,4 +1,4 @@
-import { Ship } from './ship.js'
+import { Player} from './player.js'
 
 class Gameboard {
     constructor() {
@@ -8,6 +8,8 @@ class Gameboard {
                 this.board.push({ x: letter, y: number, ship: null, hit: false });
             }
         }
+        this.player1 = new Player();
+        this.player2 = new Player();
     }
 
     findRandomPosition(shipLength) {
@@ -19,6 +21,7 @@ class Gameboard {
         const possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
         const xPosition = possibleLetters[getRandomInt(1, 10)]
         const yPosition = getRandomInt(1, 10)
+
 
 
         /* Select random coordinate
@@ -42,8 +45,8 @@ class Gameboard {
     checkSpaces(length, position, direction) {
         if (direction === "right") {
             let possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-            let letterPosition = possibleLetters.indexOf(position.x)
-            let slicedArray = possibleLetters.slice(letterPosition, letterPosition + length)
+            let letterPosition = possibleLetters.indexOf(position.x);
+            let slicedArray = possibleLetters.slice(letterPosition, letterPosition + length);
             if (slicedArray.length === length) {
                 return true;
             } else {
@@ -54,8 +57,8 @@ class Gameboard {
         } else if (direction === "left") {
             const possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
             for (let i=0; i<length; i++) {
-                let letterPosition = possibleLetters.indexOf(position.x)
-                let slicedArray = possibleLetters.toSpliced(letterPosition, length)
+                let letterPosition = possibleLetters.indexOf(position.x);
+                let slicedArray = possibleLetters.toSpliced(letterPosition, length);
                 return slicedArray;
             }
 
@@ -82,18 +85,7 @@ class Gameboard {
         }
     }
 
-    get allSunk() {
-        if (this.carrier.isSunk === true
-            && this.battleship.isSunk === true
-            && this.cruiser.isSunk === true
-            && this.destroyer.isSunk === true
-            && this.submarine.isSunk === true
-        ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
 }
 
