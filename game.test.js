@@ -112,29 +112,22 @@ describe('Ship placement tests', () => {
         { position: new Position('A', '11'), expected: false },
         { position: new Position('a', '1'), expected: false },
         { position: new Position('A', '-1'), expected: false },
-    ]) ('isInBounds detects when a position is out of bounds: %o', ({position, expected}) => {
-        expect(testboard.isInBounds(position)).toBe(expected);
+    ]) ('isSpaceInBounds detects when a single position is out of bounds: %o', ({position, expected}) => {
+        expect(testboard.isSpaceInBounds(position)).toBe(expected);
     });
 
-    test("check spaces returns true if spaces are free (right)", () => {
-        expect(testboard.checkSpaces(2, new Position('A', '1'), "right")).toBe(true);
-    })
-
-    test("check spaces returns true if spaces are free (left)", () => {
-        expect(testboard.checkSpaces(2, new Position('D', '4'), "left")).toBe(true);
-    })
-
-    test.skip("check spaces returns true if spaces are free (up)", () => {
-        expect(testboard.checkSpaces(2, new Position('J', '4'), "left")).toBe(true);
-    })
-
-    test.skip("check spaces returns true if spaces are free (down)", () => {
-        expect(testboard.checkSpaces(2, new Position('A', '1'), "down")).toBe(true);
-    })
-
-    test("check spaces returns false if spaces are not free", () => {
-        expect(testboard.checkSpaces(3, new Position('I', '1'), "right")).toBe(false);
-    })
+    test.each([
+        { shipLength: 2, position: new Position('A', '1'), direction: "right", expected: true },
+        { shipLength: 2, position: new Position('D', '4'), direction: "left", expected: true },
+        { shipLength: 2, position: new Position('J', '2'), direction: "up", expected: true },
+        { shipLength: 2, position: new Position('A', '9'), direction: "down", expected: true },
+        { shipLength: 3, position: new Position('I', '1'), direction: "right", expected: false },
+        { shipLength: 3, position: new Position('A', '4'), direction: "left", expected: false },
+        { shipLength: 3, position: new Position('D', '1'), direction: "up", expected: false },
+        { shipLength: 3, position: new Position('I', '9'), direction: "down", expected: false },
+    ]) ('isShipInBounds detects when a position is out of bounds: %o', ({shipLength, position, direction, expected}) => {
+        expect(testboard.isShipInBounds(shipLength, position, direction)).toBe(expected);
+    });
 
 })
 

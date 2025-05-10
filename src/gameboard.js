@@ -42,7 +42,7 @@ class Gameboard {
         cell.ship = shipObj;
     }
 
-    checkSpaces(length, position, direction) {
+    isShipInBounds(length, position, direction) {
         if (direction === "right") {
             let possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
             let letterPosition = possibleLetters.indexOf(position.x);
@@ -53,7 +53,12 @@ class Gameboard {
                 return false;
             }
         } else if (direction === "up") {
-
+            if (length <= Number(position.y)) {
+                return true;
+            } else if (length > Number(position.y)) {
+                return false;
+            }
+            
         } else if (direction === "left") {
             const possibleLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
             let letterPosition = possibleLetters.indexOf(position.x);
@@ -74,7 +79,7 @@ class Gameboard {
         return;
     }
 
-    isInBounds(position) {
+    isSpaceInBounds(position) {
         if (Number.isInteger(Number(position.y))
             && ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].some((x) => x === position.x)
             && 1 <= Number(position.y) && Number(position.y) <= 10
