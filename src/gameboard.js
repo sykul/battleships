@@ -68,7 +68,12 @@ class Gameboard {
                 return true;
             }
         } else if (direction === "down") {
-
+            const maxPosition = 10;
+            if (length > maxPosition - Number(position.y) + 1) {
+                return false;
+            } else if (length <= maxPosition - Number(position.y) + 1) {
+                return true;
+            }
         } else {
             throw "invalid error";
         }
